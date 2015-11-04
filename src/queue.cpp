@@ -3,8 +3,8 @@
 using namespace std;
 class QueueOp{
 public:
-	int list[5], front,dataI,dataD;
-	static int rear;
+	int list[5],dataI,dataD;
+	static int rear,front;
 	void getData()
 	{
 		cout<<"enter the element";
@@ -12,7 +12,7 @@ public:
 	}
 	void showlist()
 	{
-		cout<<"queue contain";
+	//	cout<<"queue contain";
 		//for(int i=0;i<5;i++)
 		//{
 			cout<<(list);
@@ -24,20 +24,22 @@ public:
 };
 
 int QueueOp::rear = 4;
+int QueueOp::front = 4;
 
 void QueueOp::insertQueue(QueueOp val)
 {
 	//cout<<"value"<<val.dataI;
-	cout<<"value before"<<QueueOp::rear<<endl;
+
 	if(QueueOp::rear==4)
 	{
-		cout<<" I m in first if cond"<<endl;
+
 		QueueOp::rear=0;
 	}
 	else
 	{
-		cout<<"rear is increment"<<endl;
+
 		QueueOp::rear = QueueOp::rear + 1;
+		cout<<"value of rear = "<<val.rear<<endl;
 	}
 	if(QueueOp::rear == val.front)
 	{
@@ -52,8 +54,11 @@ void QueueOp::insertQueue(QueueOp val)
 
 
 	}
-	cout<<"rear value"<<val.rear<<endl;
-	cout<<"from insert fun queue contain"<<*(val.list)<<endl;
+
+
+
+	cout<<"Contain of Queue"<<(val.list[val.rear])<<endl;
+
 }
 
 int QueueOp::deleteQueue(int dataD)
@@ -70,9 +75,9 @@ bool QueueOp::emptyQueue()
 int main()
 
 {
-	cout<<"value of rear and "<<endl;
+
     QueueOp obj1;
-    obj1.front  = 4;
+   // obj1.front  = 4;
     //cout<<"Welcome to the Queue Operations"<<endl;
 	//cout<<"You can perform following basic operation"<<endl;
 	//cout<<"insert item and delete item"<<endl;
