@@ -9,6 +9,14 @@ public:
 	{
 		cout<<"enter the element";
 		cin>>dataI;
+
+	}
+
+	void getDeldata()
+	{
+		cout<<"Enter data to delete";
+		cin>>dataD;
+		cout<<dataI<<" this value will be deleted from queue";
 	}
 	void showlist()
 	{
@@ -19,7 +27,7 @@ public:
 		//}
 	}
 	void insertQueue(QueueOp);
-	int deleteQueue(int dataD);
+	int deleteQueue(QueueOp);
 	bool emptyQueue();
 };
 
@@ -48,6 +56,7 @@ void QueueOp::insertQueue(QueueOp val)
 					val.rear=4;
 				else
 					(val.rear)--;
+
 	}
 	else {
 		val.list[val.rear]=val.dataI;
@@ -61,9 +70,20 @@ void QueueOp::insertQueue(QueueOp val)
 
 }
 
-int QueueOp::deleteQueue(int dataD)
+int QueueOp::deleteQueue(QueueOp del)
 {
-	return 0;
+	if(del.front == del.rear)
+	{
+		cout<<"Queue is empty";
+		return 0;
+	}
+	else
+	{
+		del.front = del.front + 1;
+	}
+
+
+
 }
 
 bool QueueOp::emptyQueue()
@@ -75,21 +95,33 @@ bool QueueOp::emptyQueue()
 int main()
 
 {
-
+    int c;
     QueueOp obj1;
    // obj1.front  = 4;
     //cout<<"Welcome to the Queue Operations"<<endl;
 	//cout<<"You can perform following basic operation"<<endl;
 	//cout<<"insert item and delete item"<<endl;
-
+    cout<<"To push in Queue press 1 to delete press 2";
+    cin >> c;
 //	cout<<"value="<<obj1.dataI;
-	for(int i=0;i<5;i++)
-	{
+    //if (c==1)
+    //{
+    	for(int i=0;i<5;i++)
+    	{
+    		obj1.getData();
+    		obj1.insertQueue(obj1);
+    	}
+
 	obj1.getData();
 	obj1.insertQueue(obj1);
-	}
-	obj1.getData();
-	obj1.insertQueue(obj1);
+    //}
+
+    //{
+    	obj1.getDeldata();
+    	obj1.deleteQueue(obj1);
+  //}
+
+
 //	obj1.showlist();
 	//cout<<"queue has the elements"<<(obj1.list[obj1.front]);
 	return 0;
