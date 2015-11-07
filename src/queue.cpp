@@ -2,127 +2,119 @@
 
 using namespace std;
 class QueueOp{
+
 public:
-	int list[5],dataI,dataD;
-	static int rear,front;
-	void getData()
-	{
-		cout<<"enter the element";
-		cin>>dataI;
+	QueueOp(int num,int rear1, int front1);
 
-	}
-
-	void getDeldata()
-	{
-		cout<<"Enter data to delete";
-		cin>>dataD;
-		cout<<dataI<<" this value will be deleted from queue";
-	}
-	void showlist()
-	{
-	//	cout<<"queue contain";
-		//for(int i=0;i<5;i++)
-		//{
-			cout<<(list);
-		//}
-	}
-	void insertQueue(QueueOp);
-	int deleteQueue(QueueOp);
+	void insertQueue(int);
+	void showQueue();
+	int deleteQueue();
 	bool emptyQueue();
+
+private:
+	int *pntList;
+	int SizeOfList,rear,front;
+
 };
 
-int QueueOp::rear = 4;
-int QueueOp::front = 4;
 
-void QueueOp::insertQueue(QueueOp val)
+
+
+
+QueueOp::QueueOp(int num,int rear1, int front1)
 {
-	//cout<<"value"<<val.dataI;
 
-	if(QueueOp::rear==4)
+	SizeOfList = num;
+	rear = num;
+	front = num;
+	pntList = new int[num];
+
+}
+void QueueOp::insertQueue(int val)
+{
+
+	cout<<"Value for the queue "<<val<<endl;
+	if(QueueOp::rear==SizeOfList)
 	{
-
+		//cout<<"in the if"<<endl;
 		QueueOp::rear=0;
 	}
 	else
 	{
 
+		cout<<"in the else"<<endl;
 		QueueOp::rear = QueueOp::rear + 1;
-		cout<<"value of rear = "<<val.rear<<endl;
+
 	}
-	if(QueueOp::rear == val.front)
+	if(QueueOp::rear == QueueOp::front)
 	{
 		cout<<"Queue is full";
-				if(val.front==0)
-					val.rear=4;
+				if(QueueOp::front==0)
+					QueueOp::rear=4;
 				else
-					(val.rear)--;
+					(QueueOp::rear)--;
 
-	}
-	else {
-		val.list[val.rear]=val.dataI;
-
-
-	}
-
-
-
-	cout<<"Contain of Queue"<<(val.list[val.rear])<<endl;
-
-}
-
-int QueueOp::deleteQueue(QueueOp del)
-{
-	if(del.front == del.rear)
-	{
-		cout<<"Queue is empty";
-		return 0;
 	}
 	else
 	{
-		del.front = del.front + 1;
+
+			pntList[rear] = val;
 	}
 
-
-
 }
 
-bool QueueOp::emptyQueue()
+void QueueOp::showQueue()
 {
-	return (front == rear);
+	cout<<"Queue contains :: "<<endl;
+	for(int i = 0;i < SizeOfList; i++)
+	{
+		cout<<'\t'<<pntList[i];
+	}
+	cout<<endl;
+
 
 }
+//int QueueOp::deleteQueue(QueueOp del)
+//{
+	//if(del.front == del.rear)
+	//{
+		//cout<<"Queue is empty";
+	//	return 0;
+	//}
+	//else
+	//{
+		//del.front = del.front + 1;
+//	}
+
+//	cout<<"Contain of the queue after delete"<<endl<<(del.list[del.rear])<<endl;
+
+//}
+
+//bool QueueOp::emptyQueue()
+//{
+	//return (front == rear);
+
+//}
 
 int main()
 
 {
-    int c;
-    QueueOp obj1;
-   // obj1.front  = 4;
-    //cout<<"Welcome to the Queue Operations"<<endl;
-	//cout<<"You can perform following basic operation"<<endl;
-	//cout<<"insert item and delete item"<<endl;
-    cout<<"To push in Queue press 1 to delete press 2";
-    cin >> c;
-//	cout<<"value="<<obj1.dataI;
-    //if (c==1)
-    //{
-    	for(int i=0;i<5;i++)
-    	{
-    		obj1.getData();
-    		obj1.insertQueue(obj1);
-    	}
-
-	obj1.getData();
-	obj1.insertQueue(obj1);
-    //}
-
-    //{
-    	obj1.getDeldata();
-    	obj1.deleteQueue(obj1);
-  //}
+    int size, queueIpt;
+    char term;
+    cout<<"enter the size of Queue"<<endl;
+    cin>>size;
+    QueueOp obj(size,size,size);
+    //QueueOp obj1[4];
 
 
-//	obj1.showlist();
-	//cout<<"queue has the elements"<<(obj1.list[obj1.front]);
-	return 0;
+    for(int i=0;i<10;i--)
+    {
+    	cout<<"Please enter the element for the Queue"<<endl;
+    	cin>>queueIpt;
+    	obj.insertQueue(queueIpt);
+    	obj.showQueue();
+    }
+
+
+
 }
