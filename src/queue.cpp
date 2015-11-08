@@ -1,8 +1,7 @@
 #include <iostream>
-
 using namespace std;
-class QueueOp{
 
+class QueueOp{
 public:
 	QueueOp(int num,int rear1, int front1);
 
@@ -10,16 +9,11 @@ public:
 	void showQueue();
 	int deleteQueue();
 	bool emptyQueue();
-
 private:
 	int *pntList;
 	int SizeOfList,rear,front;
 
 };
-
-
-
-
 
 QueueOp::QueueOp(int num,int rear1, int front1)
 {
@@ -41,8 +35,6 @@ void QueueOp::insertQueue(int val)
 	}
 	else
 	{
-
-		cout<<"in the else"<<endl;
 		QueueOp::rear = QueueOp::rear + 1;
 
 	}
@@ -53,51 +45,44 @@ void QueueOp::insertQueue(int val)
 					QueueOp::rear=4;
 				else
 					(QueueOp::rear)--;
-
 	}
 	else
 	{
-
-			pntList[rear] = val;
+		pntList[rear] = val;
 	}
-
 }
 
 void QueueOp::showQueue()
 {
+	int limit = (rear + SizeOfList - front) % SizeOfList + 1;
+
 	cout<<"Queue contains :: "<<endl;
-	for(int i = 0;i < SizeOfList; i++)
+
+	for(int i = 0;i < limit; i++)
 	{
-		cout<<'\t'<<pntList[i];
+		int index = (front + i) % SizeOfList;
+		cout<<'\t'<<pntList[index];
 	}
 	cout<<endl;
 
+}
+
+int QueueOp::deleteQueue()
+{
+	if(front == rear)
+	{
+		cout<<"Queue is empty";
+		return 0;
+	}
+	else
+	{
+		front = front + 1;
+	}
+return 0;
 
 }
-//int QueueOp::deleteQueue(QueueOp del)
-//{
-	//if(del.front == del.rear)
-	//{
-		//cout<<"Queue is empty";
-	//	return 0;
-	//}
-	//else
-	//{
-		//del.front = del.front + 1;
-//	}
-
-//	cout<<"Contain of the queue after delete"<<endl<<(del.list[del.rear])<<endl;
-
-//}
-
-//bool QueueOp::emptyQueue()
-//{
-	//return (front == rear);
-
-//}
 
 int main()
-
 {
     int size, queueIpt;
     char term;
@@ -107,7 +92,7 @@ int main()
     //QueueOp obj1[4];
 
 
-    for(int i=0;i<10;i--)
+    for(int i=0;i<10;i++)
     {
     	cout<<"Please enter the element for the Queue"<<endl;
     	cin>>queueIpt;
@@ -115,6 +100,7 @@ int main()
     	obj.showQueue();
     }
 
-
+    	obj.deleteQueue();
+    	obj.showQueue();
 
 }
